@@ -1,21 +1,28 @@
 <template>
-<div>
-<form>
-  <input  type="email" placeholder="Email"/>
-  <input type="password" placeholder="password"/>
-  <button @click="submit">Submit</button>
-</form>
-</div>
-
+<section>
+    <form @submit.prevent="submitData">
+    <input type="text" placeholder="Your name" v-model="enteredName"/>
+    <input type="text" placeholder="Your profession" v-model="enteredWork"/>
+    <button>Set User Data</button>
+    </form>
+</section>
 </template>
 <script>
-import ActiveUser from './ActiveUser.vue';
 
 export default{
-    name:'UserData',
-    components:{
-        ActiveUser, 
-        
+    emits:['set-data'],
+    data(){
+        return{
+            enteredName:'',
+            enteredWork:''
+        }
+    }, methods:{
+        submitData(){
+            this.$emit('set-data', this.enteredName, this.enteredWork);
+            this.enteredName='';
+            this.enteredWork='';
+        }
     }
+  
 }
 </script>

@@ -1,20 +1,38 @@
 <template>
-<div id="app">
-    <ActiveUser msg="Hi"/>
+<div>
+   <active-user :username="user.name" :userwork="user.work"></active-user>
+   <user-data @set-data="setUserData"></user-data>
+
     </div>
 </template>
 <script>
 import ActiveUser from './components/ActiveUser.vue'
+import UserData from './components/UserData.vue'
 
  export default{
-     name:'App',
-     
-     components:{
-         
-          ActiveUser
-     }
+   data(){
+       return{
+           user:{
+               name:'Samanja',
+               work:'Programmer'
+           }
+       }
+   }, 
+   components:{
+       ActiveUser,
+       UserData
+   },
+   methods:{
+       setUserData(name,work){
+          this.user={
+              name:name,
+              work:work
+          }
+       }
+   }
  }
-</script>
+
+          </script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
